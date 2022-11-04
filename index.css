@@ -1,0 +1,34 @@
+html{
+    background-image: url(images/otarie.jpg);
+}
+
+body{
+    background-image: url(images/otarieII.jpg);
+    width : 850px;
+    height : 550px;
+    margin-left : 250px;
+    margin-top: 150px;
+}
+
+h2{
+    margin-left: 200px;
+    font-family: 'Trebuchet MS';
+    padding-top : 20px;
+}
+
+h3{
+    margin-left: 200px;
+    margin-top : 55px;
+    font-family: 'Arial';
+}
+
+input[type=email],input[type=password]{
+    margin-left: 200px;
+    width : 450px;
+    margin-top : 40px;
+}
+
+input[type=submit]{
+    margin-left: 390px;
+    margin-top : 60px;
+}
