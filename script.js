@@ -1,101 +1,52 @@
-const emailVal = document.querySelector('#email');
-const passwordVal = document.querySelector('#mdp');
+function checkForm(form)
+  {
+    if(form.email.value == "") {
+      alert("Le champ Email ne doit pas etre vide");
+      form.email.focus();
+      return false;
+    }
+    re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(form.email.value)) {
+      alert("Rentrez une adresse mail valide");
+      form.email.focus();
+      return false;
+    }
 
-const checkEmail = () => {
-    let valid = false;
-    const email = emailVal.value.trim();
-    if (!isRequired(email)) {
-        showError(emailVal, 'Email cannot be blank.');
-    } else if (!isEmailValid(email)) {
-        showError(emailVal, 'Email is not valid.')
+    if(form.mdp1.value != "" && form.mdp1.value == form.mdp2.value) {
+      if(form.mdp1.value.length < 14) {
+        alert("Vous devez rentrer au minimum 14 caracteres");
+        form.mdp1.focus();
+        return false;
+      }
+      if(form.mdp1.value == form.email.value) {
+        alert("Le mot de passe doit etre different de votre e-mail");
+        form.mdp1.focus();
+        return false;
+      }
+      re = /[0-9]/;
+      if(!re.test(form.mdp1.value)) {
+        alert("Votre mot de passe doit contenir au moins un chiffre");
+        form.mdp1.focus();
+        return false;
+      }
+      re = /[a-z]/;
+      if(!re.test(form.mdp1.value)) {
+        alert("Votre mot de passe doit contenir au moins une minuscule");
+        form.mdp1.focus();
+        return false;
+      }
+      re = /[A-Z]/;
+      if(!re.test(form.mdp1.value)) {
+        alert("Votre mot de passe doit contenir au moins une majuscule");
+        form.mdp1.focus();
+        return false;
+      }
     } else {
-        showSuccess(emailVal);
-        valid = true;
-    }
-    return valid;
-};
-
-const checkPassword = () => {
-    let valid = false;
-
-
-    const password = passwordEl.value.trim();
-
-    if (!isRequired(mdp)) {
-        showError(passwordVal, 'Password cannot be blank.');
-    } else if (!isPasswordSecure(password)) {
-        showError(passwordVal, 'Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)');
-    } else {
-        showSuccess(passwordVal);
-        valid = true;
+      alert("Veuillez entrer ou correspondre votre mot de passe !");
+      form.mdp1.focus();
+      return false;
     }
 
-    return valid;
-};
-
-const isEmailValid = (email) => {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-};
-
-const isPasswordSecure = (mdp) => {
-    const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-    return re.test(mdp);
-};
-
-const isRequired = value => value === '' ? false : true;
-const isBetween = (length, min, max) => length < min || length > max ? false : true;
-
-const showError = (input, message) => {
-    // get the form-field element
-    const formField = input.parentElement;
-    // add the error class
-    formField.classList.remove('success');
-    formField.classList.add('error');
-
-    // show the error message
-    const error = formField.querySelector('small');
-    error.textContent = message;
-};
-
-const showSuccess = (input) => {
-    // get the form-field element
-    const formField = input.parentElement;
-
-    // remove the error class
-    formField.classList.remove('error');
-    formField.classList.add('success');
-
-    // hide the error message
-    const error = formField.querySelector('small');
-    error.textContent = '';
-}
-
-
-form.addEventListener('submit', function (e) {
-    // prevent the form from submitting
-    e.preventDefault();
-
-    // validate fields
-    let isEmailValid = checkEmail(),
-        isPasswordValid = checkPassword();
-
-    let isFormValid = isEmailValid && isPasswordValid;
-        
-
-    // submit to the server if the form is valid
-    if (isFormValid) {
-
-    }
-
-    form.addEventListener('input', debounce(function (e) {
-        switch (e.target.id) {
-            case 'email':
-                checkEmail();
-                break;
-            case 'password':
-                checkPassword();
-                break;
-        }
-    }));
-});
+    alert("Bienvenue sur le Wikipedia de l'Eau-Tarie !");
+    return true;
+  }
