@@ -9,13 +9,20 @@
   
     <h2>Connectez vous pour aller sur notre site</h2>
   
+    <form onsubmit="return checkForm(this);">
+    
     <h3>Entrez une adresse email:</h3>
-      <input type="email" id='email'>
+      <input type="email" name="email"> </input>
 
     <h3>Entrez votre mot de passe :</h3>
-      <input type="password" id='mdp'>
+      <input type="password" name="mdp1"> </input>
 
-      <input type="submit" value="Envoyer">
+    <h3>Confirmez votre mot de passe :</h3>
+      <input type="password" name="mdp2"> </input>
+
+    <input type="submit" value="Envoyer">
+
+    </form>
 
 </body>
 </html>
